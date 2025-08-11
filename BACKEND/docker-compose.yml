@@ -1,0 +1,72 @@
+services:
+  api_analysis:
+    build: ./Analisis
+    restart: always
+    networks:
+      - config_services_app_network
+  api_muestras:
+    build: ./Muestras
+    restart: always
+    networks:
+      - config_services_app_network
+    environment:
+      - MONGO_URI_LOCAL=mongodb://admin:admin@db_proyect:27017/laboratorio?authSource=admin
+      - PORT_EXPRESS=3002
+      - RABBITMQ_HOST=amqp://admin:admin@rabbitmq_eco
+  api_users:
+    build: ./Usuarios
+    restart: always
+    networks:
+      - config_services_app_network
+    environment:
+      - MONGO_URI=mongodb://admin:admin@db_proyect:27017/laboratorio?authSource=admin
+      - PORT=3000
+      - JWT_SECRET=asdfghjkl
+      - RABBITMQ_HOST=amqp://admin:admin@rabbitmq_eco
+  api_email:
+    build: ./EmailService
+    restart: always
+    networks:
+      - config_services_app_network
+    environment:
+      - PORT_EXPRESS=3004
+      - RABBITMQ_HOST=amqp://admin:admin@rabbitmq_eco
+      - EMAIL_USER=goku43210@gmail.com
+      - EMAIL_PASS=bdoetzgiwxpqtqvg
+  esbservice:
+    build: ./Esb-Services
+    restart: always
+    networks:
+      - config_services_app_network
+    ports:
+      - "3500:8080"
+  iot_service:
+    build: ./IOT
+    restart: always
+    networks:
+      - config_services_app_network
+    environment:
+      - MONGO_URI_LOCAL=mongodb://admin:admin@db_proyect:27017/laboratorio?authSource=admin
+      - PORT_EXPRESS=3005
+      - API_WHATSAPP=http://evolution_api:8080/message/sendText/Alertas
+      - NUMPHONE=5216181667980
+      - TEMPERATURE=30
+      - PASSWORDIOTLDR=2#_k.y*=Y,q2vg5gbYCG@LcQ,_)?V*UJ;QAmbU:f[e=GC3#wy$
+      - PASSWORDIOTTEMP=[:E/C91Q_Y6M[f9X#Z%hUTu)S*1dn=]uR]vRkmGJQc!Cyeb#p*
+  api_pedidos:
+    build: ./Pedidos
+    restart: always
+    networks:
+      - config_services_app_network
+    environment:
+      - MONGO_URI=mongodb://admin:admin@db_proyect:27017/laboratorio?authSource=admin
+      - PORT=3006
+      - JWT_SECRET=asdfghjkl
+
+networks:
+  config_services_app_network:
+    external: true
+
+volumes:
+  mongo_data:
+  image_products:

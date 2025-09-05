@@ -1,5 +1,3 @@
->[!NOTE]
->Integradora II la venganza, esto es personal?
 <h1>Que es esto?</h1>
 <p>Este repositorio esta dedicado principalmente al desarrollo y gestionamiento de la segunda integradora de nuestra carrera como desarrolladores multiplataforma</p>
 
@@ -17,17 +15,11 @@
 <h3>Tecnologias Integradas</h3>
 
 <ul>
-<h4>Frontend</h4>
-<li>React JS (Frontend web)</li>
-<li>React Native (Frontend Movil)</li>
 <h4>Backend</h4>
 <li>Node JS (backend modular)</li>
 <li>C# (Manejo de ESB)</li>
+<li>Docker</li>
 </ul>
-
-> [!IMPORTANT]
->Es un proyecto en desarrollo
-<h2>Integrantes</h3>
 
 <ul>
     <li><a href="https://github.com/Mario09122004">@Mario09122004</a></li>
@@ -75,3 +67,4 @@
         </summary>
     </div>
 </div>
+
